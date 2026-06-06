@@ -1131,7 +1131,7 @@ export const prompts: Prompt[] = [
   },
 
   {
-  id: 201,
+  id: "debate-001",
   category: "debate",
   title: "Pineapple Crime",
   mainPrompt: "Is pineapple on pizza a crime?",
@@ -1152,7 +1152,7 @@ export const prompts: Prompt[] = [
   tags: ["food", "hot take", "fun"]
 },
 {
-  id: 202,
+  id: "debate-002",
   category: "debate",
   title: "Love Choice",
   mainPrompt: "Is love a choice or a feeling?",
@@ -1173,7 +1173,7 @@ export const prompts: Prompt[] = [
   tags: ["love", "relationships", "philosophy"]
 },
 {
-  id: 203,
+  id: "debate-003",
   category: "debate",
   title: "First Date Bill",
   mainPrompt: "Who should pay on the first date?",
