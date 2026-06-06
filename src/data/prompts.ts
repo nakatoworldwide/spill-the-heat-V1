@@ -722,7 +722,7 @@ export const prompts: Prompt[] = [
     id: "funny-045",
     category: "funny",
     title: "Childhood Criminal Edition",
-    mainPrompt: "What’s something lowkey illegal you did as a kid — and got away with?",
+    mainPrompt: "What’s something lowkey illegal you did as a kid?",
     reveals: [
       {
         label: "Follow-up",
@@ -815,7 +815,7 @@ export const prompts: Prompt[] = [
     id: "funny-062",
     category: "funny",
     title: "Fake Fan Edition",
-    mainPrompt: "What’s something everyone loves that you secretly don’t get the hype about?",
+    mainPrompt: "What’s something everyone loves that you don’t get the hype about?",
     reveals: [
       {
         label: "Follow-up",
@@ -1000,7 +1000,7 @@ export const prompts: Prompt[] = [
     id: "funny-044",
     category: "funny",
     title: "Snack Sabotage Edition",
-    mainPrompt: "What’s the most shameless thing you’ve eaten… that wasn’t yours?",
+    mainPrompt: "you ever ate something you were'nt supposed to eat?",
     reveals: [
       {
         label: "Follow-up",
@@ -1130,95 +1130,5 @@ export const prompts: Prompt[] = [
     tags: ["animals", "hypothetical", "chaos", "feral"],
   },
 
-  {
-    id: "funny-067",
-    category: "funny",
-    title: "Unnecessary Research Edition",
-    mainPrompt: "What’s something you randomly got way too obsessed with learning… for no reason?",
-    reveals: [
-      {
-        label: "Follow-up",
-        text: "Did it ever come in handy — or was it 100% wasted brain space?",
-      },
-      {
-        label: "Roast Bait",
-        text: "Who here treats every dumb thought like it deserves a PhD?",
-      },
-    ],
-    entryIntensity: 1,
-    finalIntensity: 2,
-    risk: "low",
-    type: "story",
-    openingStyle: "self",
-    tags: ["research", "obsession", "random", "knowledge"],
-  },
 
-  {
-    id: "debate-001",
-    category: "debate",
-    title: "First Date Money Edition",
-    mainPrompt: "Who should pay on the first date?",
-    reveals: [
-      {
-        label: "Follow-up",
-        text: "Does your answer change depending on who asked who out?",
-      },
-      {
-        label: "Dig",
-        text: "Is your answer about fairness, tradition, attraction, or ego?",
-      },
-    ],
-    entryIntensity: 2,
-    finalIntensity: 3,
-    risk: "medium",
-    type: "debate",
-    openingStyle: "opinion",
-    tags: ["dating", "money", "values"],
-  },
-
-  {
-    id: "spicy-001",
-    category: "spicy",
-    title: "Mixed Signals Edition",
-    mainPrompt: "What’s something people do when they’re clearly flirting but pretend they’re not?",
-    reveals: [
-      {
-        label: "Follow-up",
-        text: "Would you call it confidence, delusion, or strategy?",
-      },
-      {
-        label: "Roast Bait",
-        text: "Who here thinks they’re subtle but absolutely is not?",
-      },
-    ],
-    entryIntensity: 2,
-    finalIntensity: 3,
-    risk: "medium",
-    type: "opinion",
-    openingStyle: "opinion",
-    tags: ["flirting", "dating", "social tension"],
-  },
-
-  {
-    id: "unhinged-001",
-    category: "unhinged",
-    title: "Public Chaos Edition",
-    mainPrompt: "If you saw someone having a full argument with themselves in public, how long would you pretend not to notice?",
-    reveals: [
-      {
-        label: "Follow-up",
-        text: "At what point does curiosity defeat social manners?",
-      },
-      {
-        label: "Roast Bait",
-        text: "Who here would absolutely slow down just to hear the plot?",
-      },
-    ],
-    entryIntensity: 1,
-    finalIntensity: 2,
-    risk: "low",
-    type: "opinion",
-    openingStyle: "hypothetical",
-    tags: ["public chaos", "social behavior", "funny"],
-  },
 ];
