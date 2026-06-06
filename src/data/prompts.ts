@@ -1130,5 +1130,68 @@ export const prompts: Prompt[] = [
     tags: ["animals", "hypothetical", "chaos", "feral"],
   },
 
+  {
+  id: 201,
+  category: "debate",
+  title: "Pineapple Crime",
+  mainPrompt: "Is pineapple on pizza a crime?",
+  reveals: [
+    {
+      label: "Follow-up",
+      text: "Is it actually bad, or do people just hate it because the internet told them to?"
+    },
+    {
+      label: "Debate Twist",
+      text: "Defend the opposite side for 30 seconds."
+    }
+  ],
+  entryIntensity: 1,
+  finalIntensity: 2,
+  risk: "low",
+  type: "debate",
+  tags: ["food", "hot take", "fun"]
+},
+{
+  id: 202,
+  category: "debate",
+  title: "Love Choice",
+  mainPrompt: "Is love a choice or a feeling?",
+  reveals: [
+    {
+      label: "Follow-up",
+      text: "At what point does love stop being emotion and become effort?"
+    },
+    {
+      label: "Point Finger",
+      text: "Who here would choose loyalty over chemistry?"
+    }
+  ],
+  entryIntensity: 2,
+  finalIntensity: 3,
+  risk: "medium",
+  type: "debate",
+  tags: ["love", "relationships", "philosophy"]
+},
+{
+  id: 203,
+  category: "debate",
+  title: "First Date Bill",
+  mainPrompt: "Who should pay on the first date?",
+  reveals: [
+    {
+      label: "Follow-up",
+      text: "Does your answer change depending on who asked who out?"
+    },
+    {
+      label: "Debate Twist",
+      text: "Now answer like you’re broke but trying to sound classy."
+    }
+  ],
+  entryIntensity: 2,
+  finalIntensity: 3,
+  risk: "medium",
+  type: "debate",
+  tags: ["dating", "money", "social rules"]
+},
 
 ];
