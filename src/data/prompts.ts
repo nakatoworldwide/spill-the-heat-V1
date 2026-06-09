@@ -26,6 +26,95 @@ export type Prompt = {
 };
 
 export const prompts: Prompt[] = [
+
+ {
+  id: "funny-accent-confidence",
+  category: "funny",
+  title: "Accent Confidence Edition",
+  mainPrompt: "What accent do you think you could do convincingly?",
+  reveals: [
+    {
+      label: "Follow-up",
+      text: "Alright then. Let’s hear it.",
+    },
+    {
+      label: "Roast Bait",
+      text: "Who here is about to offend an entire region?",
+    },
+  ],
+  entryIntensity: 2,
+  finalIntensity: 3,
+  risk: "low",
+  type: "action",
+  openingStyle: "self",
+  tags: ["accent", "performance", "confidence", "funny"],
+},
+{
+  id: "funny-animal-noise",
+  category: "funny",
+  title: "Animal Noise Edition",
+  mainPrompt: "What animal noise could you probably recreate way too accurately?",
+  reveals: [
+    {
+      label: "Follow-up",
+      text: "Do it.",
+    },
+    {
+      label: "Roast Bait",
+      text: "Who here has been waiting their whole life for this moment?",
+    },
+  ],
+  entryIntensity: 1,
+  finalIntensity: 2,
+  risk: "low",
+  type: "action",
+  openingStyle: "self",
+  tags: ["animals", "performance", "chaos", "funny"],
+},
+{
+  id: "funny-instant-actor",
+  category: "funny",
+  title: "Instant Actor Edition",
+  mainPrompt: "What movie scene or phrase could you perform from memory right now?",
+  reveals: [
+    {
+      label: "Follow-up",
+      text: "Stand up then.",
+    },
+    {
+      label: "Roast Bait",
+      text: "Who here thinks they’re way more cinematic than they are?",
+    },
+  ],
+  entryIntensity: 2,
+  finalIntensity: 3,
+  risk: "low",
+  type: "action",
+  openingStyle: "self",
+  tags: ["acting", "movies", "performance", "funny"],
+},
+{
+  id: "funny-worst-impression",
+  category: "funny",
+  title: "Worst Impression Edition",
+  mainPrompt: "Whose voice in this room could you imitate immediately?",
+  reveals: [
+    {
+      label: "Follow-up",
+      text: "Do not say a name unless you’re ready to perform it.",
+    },
+    {
+      label: "Roast Bait",
+      text: "Who here has a voice people can copy way too easily?",
+    },
+  ],
+  entryIntensity: 3,
+  finalIntensity: 4,
+  risk: "medium",
+  type: "action",
+  openingStyle: "group",
+  tags: ["impression", "group", "performance", "roast"],
+}, 
  
   {
     id: "funny-008",
@@ -123,7 +212,7 @@ export const prompts: Prompt[] = [
     id: "funny-019",
     category: "funny",
     title: "Pet Peeve Confessions",
-    mainPrompt: "What’s something small that makes you instantly dislike a person?",
+    mainPrompt: "What’s something that makes you instantly dislike a person?",
     reveals: [
       {
         label: "Follow-up",
