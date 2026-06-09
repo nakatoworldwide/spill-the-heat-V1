@@ -1218,4 +1218,26 @@ export const prompts: Prompt[] = [
     openingStyle: "hypothetical",
     tags: ["animals", "hypothetical", "chaos", "feral"],
   },
+  {
+  id: "debate-001",
+  category: "debate",
+  title: "Pineapple Crime",
+  mainPrompt: "Is pineapple on pizza a crime?",
+  openingStyle: "direct",
+  reveals: [
+    {
+      label: "Follow-up",
+      text: "Is it actually bad, or do people just hate it because the internet told them to?",
+    },
+    {
+      label: "Debate Twist",
+      text: "Defend the opposite side for 30 seconds.",
+    },
+  ],
+  entryIntensity: 1,
+  finalIntensity: 2,
+  risk: "low",
+  type: "debate",
+  tags: ["food", "hot take", "fun"],
+}
 ];
