@@ -114,8 +114,20 @@ export default function GameClient({ category, prompts }: GameClientProps) {
       <div className="flex flex-col flex-1 px-5 pb-6 max-w-3xl mx-auto w-full">
 
         <div className="mb-5">
-          <img src="/logo.svg" alt="Spill The Heat" className="w-120" />
-        </div>
+  <p style={{
+    fontFamily: "'Archivo Black', sans-serif",
+    fontWeight: 900,
+    fontSize: "clamp(48px, 12vw, 80px)",
+    lineHeight: 0.92,
+    letterSpacing: "2px",
+    background: "linear-gradient(220deg, #FFB300 0%, #FF8F50 30%, #FF5A1F 100%)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    backgroundClip: "text",
+  }}>
+    SPILL<br />THE<br />HEAT
+  </p>
+</div>
 
         <PromptCard text={currentPrompt.mainPrompt} />
 
