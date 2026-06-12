@@ -33,10 +33,12 @@ export default function GameClient({ category, prompts }: GameClientProps) {
   }, [category]);
 
   useEffect(() => {
-    if (visibleRevealCount > 0 && revealsRef.current) {
-      revealsRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
-    }
-  }, [visibleRevealCount]);
+  if (visibleRevealCount > 0) {
+    setTimeout(() => {
+      revealsRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }, 100);
+  }
+}, [visibleRevealCount]);
 
   const currentPrompt = promptQueue[currentPromptIndex];
 
@@ -138,24 +140,27 @@ export default function GameClient({ category, prompts }: GameClientProps) {
 
         <PromptCard text={currentPrompt.mainPrompt} />
 
-        <div className="flex flex-col gap-3" ref={revealsRef}>
-          {currentPrompt.reveals.map((reveal, index) => (
-            <RevealCard
-              key={index}
-              label={reveal.label}
-              text={reveal.text}
-              isRevealed={index < visibleRevealCount}
-              isNext={index === visibleRevealCount}
-              onReveal={revealNext}
-            />
-          ))}
+        <div className="flex flex-col gap-3">
+  {currentPrompt.reveals.map((reveal, index) => (
+    <div key={index} ref={index === visibleRevealCount ? revealsRef : null}>
+      <RevealCard
+        label={reveal.label}
+        text={reveal.text}
+        isRevealed={index < visibleRevealCount}
+        isNext={index === visibleRevealCount}
+        onReveal={revealNext}
+      />
+    </div>
+  ))}
 
-          {allRevealed && (
-            <ActionButton onClick={goToNextPrompt}>
-              Next Question →
-            </ActionButton>
-          )}
-        </div>
+  {allRevealed && (
+    <div ref={allRevealed ? revealsRef : null}>
+      <ActionButton onClick={goToNextPrompt}>
+        Next Question →
+      </ActionButton>
+    </div>
+  )}
+</div>
 
       </div>
     </main>
