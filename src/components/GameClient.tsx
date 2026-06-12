@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Prompt } from "@/data/prompts";
 import { createPromptQueue } from "@/lib/promptEngine";
 import PromptCard from "@/components/game/PromptCard";
@@ -19,6 +19,7 @@ export default function GameClient({ category, prompts }: GameClientProps) {
   const [currentPromptIndex, setCurrentPromptIndex] = useState(0);
   const [visibleRevealCount, setVisibleRevealCount] = useState(0);
   const [seenIds, setSeenIds] = useState<Set<string>>(new Set());
+  const revealsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const queue = createPromptQueue(prompts, {
@@ -30,6 +31,12 @@ export default function GameClient({ category, prompts }: GameClientProps) {
     setCurrentPromptIndex(0);
     setVisibleRevealCount(0);
   }, [category]);
+
+  useEffect(() => {
+    if (visibleRevealCount > 0 && revealsRef.current) {
+      revealsRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
+    }
+  }, [visibleRevealCount]);
 
   const currentPrompt = promptQueue[currentPromptIndex];
 
@@ -114,24 +121,24 @@ export default function GameClient({ category, prompts }: GameClientProps) {
       <div className="flex flex-col flex-1 px-5 pb-6 max-w-3xl mx-auto w-full">
 
         <div className="mb-5">
-  <p style={{
-    fontFamily: "'Archivo Black', sans-serif",
-    fontWeight: 900,
-    fontSize: "clamp(48px, 12vw, 80px)",
-    lineHeight: 0.92,
-    letterSpacing: "2px",
-    background: "linear-gradient(220deg, #FFB300 0%, #FF8F50 30%, #FF5A1F 100%)",
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-    backgroundClip: "text",
-  }}>
-    SPILL<br />THE<br />HEAT
-  </p>
-</div>
+          <p style={{
+            fontFamily: "var(--font-archivo-black), sans-serif",
+            fontWeight: 900,
+            fontSize: "clamp(48px, 12vw, 80px)",
+            lineHeight: 0.92,
+            letterSpacing: "2px",
+            background: "linear-gradient(220deg, #FFB300 0%, #FF8F50 30%, #FF5A1F 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}>
+            SPILL<br />THE<br />HEAT
+          </p>
+        </div>
 
         <PromptCard text={currentPrompt.mainPrompt} />
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3" ref={revealsRef}>
           {currentPrompt.reveals.map((reveal, index) => (
             <RevealCard
               key={index}
