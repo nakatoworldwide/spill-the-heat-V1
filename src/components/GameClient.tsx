@@ -20,6 +20,7 @@ export default function GameClient({ category, prompts }: GameClientProps) {
   const [visibleRevealCount, setVisibleRevealCount] = useState(0);
   const [seenIds, setSeenIds] = useState<Set<string>>(new Set());
   const revealsRef = useRef<HTMLDivElement>(null);
+  const topRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const queue = createPromptQueue(prompts, {
@@ -33,12 +34,12 @@ export default function GameClient({ category, prompts }: GameClientProps) {
   }, [category]);
 
   useEffect(() => {
-  if (visibleRevealCount > 0) {
-    setTimeout(() => {
-      revealsRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    }, 100);
-  }
-}, [visibleRevealCount]);
+    if (visibleRevealCount > 0) {
+      setTimeout(() => {
+        revealsRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }, 150);
+    }
+  }, [visibleRevealCount]);
 
   const currentPrompt = promptQueue[currentPromptIndex];
 
@@ -58,6 +59,9 @@ export default function GameClient({ category, prompts }: GameClientProps) {
 
   function goToNextPrompt() {
     setVisibleRevealCount(0);
+    setTimeout(() => {
+      topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 50);
     setCurrentPromptIndex((current) => {
       const nextIndex = current + 1;
       if (nextIndex >= promptQueue.length) {
@@ -104,6 +108,7 @@ export default function GameClient({ category, prompts }: GameClientProps) {
 
   return (
     <main className="min-h-screen bg-[#111] text-white flex flex-col">
+      <div ref={topRef} />
 
       <div className="flex items-center justify-between px-5 py-6">
         <button
@@ -141,26 +146,26 @@ export default function GameClient({ category, prompts }: GameClientProps) {
         <PromptCard text={currentPrompt.mainPrompt} />
 
         <div className="flex flex-col gap-3">
-  {currentPrompt.reveals.map((reveal, index) => (
-    <div key={index} ref={index === visibleRevealCount ? revealsRef : null}>
-      <RevealCard
-        label={reveal.label}
-        text={reveal.text}
-        isRevealed={index < visibleRevealCount}
-        isNext={index === visibleRevealCount}
-        onReveal={revealNext}
-      />
-    </div>
-  ))}
+          {currentPrompt.reveals.map((reveal, index) => (
+            <div key={index} ref={index === visibleRevealCount ? revealsRef : null}>
+              <RevealCard
+                label={reveal.label}
+                text={reveal.text}
+                isRevealed={index < visibleRevealCount}
+                isNext={index === visibleRevealCount}
+                onReveal={revealNext}
+              />
+            </div>
+          ))}
 
-  {allRevealed && (
-    <div ref={allRevealed ? revealsRef : null}>
-      <ActionButton onClick={goToNextPrompt}>
-        Next Question →
-      </ActionButton>
-    </div>
-  )}
-</div>
+          {allRevealed && (
+            <div ref={revealsRef}>
+              <ActionButton onClick={goToNextPrompt} variant="red">
+  Next Question →
+</ActionButton>
+            </div>
+          )}
+        </div>
 
       </div>
     </main>
