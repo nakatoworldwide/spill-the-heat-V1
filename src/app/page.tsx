@@ -2,23 +2,24 @@ import Link from "next/link";
 
 export default function HomePage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-black text-white px-6">
-      
-      <h1 className="text-5xl font-bold tracking-tight mb-4">
-        Spill the Heat
-      </h1>
+    <main className="flex min-h-screen flex-col bg-[#111]">
+      <div className="flex flex-1 flex-col px-6 py-12 max-w-6xl mx-auto w-full">
 
-      <p className="text-white/70 text-center max-w-sm mb-10">
-        The game that exposes everyone.
-      </p>
+        <div className="flex flex-1 flex-col justify-start pb-10">
+  <img src="/logo.svg" alt="Spill The Heat" className="w-150" />
+</div>
 
-      <Link
-        href="/category"
-        className="rounded-full bg-white text-black px-8 py-4 font-semibold transition hover:scale-105"
-      >
-        Start
-      </Link>
+        <div className="flex flex-col gap-4 mb-40">
+          <Link
+            href="/category"
+            className="rounded-xl bg-[#FF5A1F] py-4 text-center text-base font-bold text-white transition active:scale-95 w-120 mx-auto"
+          >
+            Start
+          </Link>
+          <p className="text-xs text-white/20 text-center">Best with 3+ players</p>
+        </div>
 
+      </div>
     </main>
   );
 }

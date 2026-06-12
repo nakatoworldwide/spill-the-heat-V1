@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import GameClient from "@/components/GameClient";
 import { prompts } from "@/data/prompts";
 
@@ -25,5 +27,5 @@ export default async function PlayPage({ params }: Props) {
     );
   }
 
-  return <GameClient category={category} prompts={categoryPrompts} />;
+  return <GameClient key={Math.random()} category={category} prompts={categoryPrompts} />;
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { Prompt } from "@/data/prompts";
 import { createPromptQueue } from "@/lib/promptEngine";
@@ -13,82 +14,131 @@ type GameClientProps = {
 };
 
 export default function GameClient({ category, prompts }: GameClientProps) {
+  const router = useRouter();
   const [promptQueue, setPromptQueue] = useState<Prompt[]>([]);
   const [currentPromptIndex, setCurrentPromptIndex] = useState(0);
   const [visibleRevealCount, setVisibleRevealCount] = useState(0);
+  const [seenIds, setSeenIds] = useState<Set<string>>(new Set());
 
   useEffect(() => {
-    setPromptQueue(
-      createPromptQueue(prompts, {
-        category,
-        useIntensityProgression: true,
-      })
-    );
-
+    const queue = createPromptQueue(prompts, {
+      category,
+      useIntensityProgression: true,
+      excludeIds: seenIds,
+    });
+    setPromptQueue(queue);
     setCurrentPromptIndex(0);
     setVisibleRevealCount(0);
-  }, [category, prompts]);
+  }, [category]);
 
   const currentPrompt = promptQueue[currentPromptIndex];
 
   if (!currentPrompt) {
     return (
-      <main className="min-h-screen bg-black text-white p-6">
-        <p className="text-white/60">Loading prompt...</p>
+      <main className="min-h-screen bg-[#111] text-white">
+        <div className="flex flex-col flex-1 px-5 py-6 max-w-3xl mx-auto w-full">
+          <p className="text-white/40">Loading...</p>
+        </div>
       </main>
     );
   }
 
   function revealNext() {
-    setVisibleRevealCount((currentCount) => currentCount + 1);
+    setVisibleRevealCount((c) => c + 1);
   }
 
   function goToNextPrompt() {
-    const nextIndex = currentPromptIndex + 1;
-
-    if (nextIndex >= promptQueue.length) {
-  alert("Session complete — all prompts in this category have been shown.");
-  setPromptQueue(
-    createPromptQueue(prompts, {
-      category,
-      useIntensityProgression: true,
-    })
-  );
-  setCurrentPromptIndex(0);
-} else {
-  setCurrentPromptIndex(nextIndex);
-}
-
     setVisibleRevealCount(0);
+    setCurrentPromptIndex((current) => {
+      const nextIndex = current + 1;
+      if (nextIndex >= promptQueue.length) {
+        const newSeenIds = new Set([...seenIds, ...promptQueue.map((p) => p.id)]);
+        setSeenIds(newSeenIds);
+        const newQueue = createPromptQueue(prompts, {
+          category,
+          useIntensityProgression: true,
+          excludeIds: newSeenIds,
+        });
+        setPromptQueue(newQueue);
+        return 0;
+      }
+      return nextIndex;
+    });
   }
 
-  const hasMoreReveals = visibleRevealCount < currentPrompt.reveals.length;
+  function skipPrompt() {
+    const currentIntensity = currentPrompt.entryIntensity;
+    const usedIds = new Set(promptQueue.map((p) => p.id));
+    const sameIntensityPrompts = prompts.filter(
+      (p) =>
+        p.category === category &&
+        Number(p.entryIntensity) === currentIntensity &&
+        p.id !== currentPrompt.id &&
+        !usedIds.has(p.id)
+    );
+
+    if (sameIntensityPrompts.length > 0) {
+      const shuffled = [...sameIntensityPrompts].sort(() => Math.random() - 0.5);
+      const replacement = shuffled[0];
+      setPromptQueue((queue) => {
+        const newQueue = [...queue];
+        newQueue[currentPromptIndex] = replacement;
+        return newQueue;
+      });
+      setVisibleRevealCount(0);
+    } else {
+      goToNextPrompt();
+    }
+  }
+
+  const allRevealed = visibleRevealCount >= currentPrompt.reveals.length;
 
   return (
-    <main className="min-h-screen bg-black text-white p-6">
-      <p className="text-white/50 mb-4 capitalize">{category}</p>
+    <main className="min-h-screen bg-[#111] text-white flex flex-col">
 
-      <h1 className="text-3xl font-bold mb-8">{currentPrompt.title}</h1>
+      <div className="flex items-center justify-between px-5 py-6">
+        <button
+          onClick={() => router.push("/category")}
+          className="text-white/50 hover:text-white text-xl"
+        >
+          ←
+        </button>
+        <button
+          onClick={skipPrompt}
+          className="text-white/40 hover:text-white text-xs"
+        >
+          Skip This Topic
+        </button>
+      </div>
 
-      <PromptCard title="Main Prompt" text={currentPrompt.mainPrompt} />
+      <div className="flex flex-col flex-1 px-5 pb-6 max-w-3xl mx-auto w-full">
 
-      <div className="flex flex-col gap-4 mb-8">
-        {currentPrompt.reveals
-          .slice(0, visibleRevealCount)
-          .map((reveal, index) => (
+        <div className="mb-5">
+          <img src="/logo.svg" alt="Spill The Heat" className="w-120" />
+        </div>
+
+        <PromptCard text={currentPrompt.mainPrompt} />
+
+        <div className="flex flex-col gap-3">
+          {currentPrompt.reveals.map((reveal, index) => (
             <RevealCard
               key={index}
               label={reveal.label}
               text={reveal.text}
+              isRevealed={index < visibleRevealCount}
+              isNext={index === visibleRevealCount}
+              onReveal={revealNext}
             />
           ))}
-      </div>
 
-      {hasMoreReveals ? (
-        <ActionButton onClick={revealNext}>Tap to reveal</ActionButton>
-      ) : (
-        <ActionButton onClick={goToNextPrompt}>Next Question</ActionButton>
-      )}
+          {allRevealed && (
+            <ActionButton onClick={goToNextPrompt}>
+              Next Question →
+            </ActionButton>
+          )}
+        </div>
+
+      </div>
     </main>
   );
 }

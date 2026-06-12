@@ -1,13 +1,22 @@
 type ActionButtonProps = {
   children: React.ReactNode;
   onClick: () => void;
+  variant?: "white" | "orange";
 };
 
-export default function ActionButton({ children, onClick }: ActionButtonProps) {
+export default function ActionButton({
+  children,
+  onClick,
+  variant = "white",
+}: ActionButtonProps) {
   return (
     <button
       onClick={onClick}
-      className="w-full rounded-full bg-white text-black px-6 py-4 font-semibold transition hover:scale-105"
+      className={`mt-2 w-full rounded-xl px-5 py-3 text-center font-bold text-base transition active:scale-95 ${
+        variant === "orange"
+          ? "bg-[#FF5A1F] text-white"
+          : "bg-white text-[#111]"
+      }`}
     >
       {children}
     </button>
