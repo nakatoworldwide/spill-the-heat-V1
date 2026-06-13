@@ -81,7 +81,9 @@ export default function GameClient({ category, prompts }: GameClientProps) {
   });
   setTimeout(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, 50);
+    document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
+    document.body.scrollTo({ top: 0, behavior: "smooth" });
+  }, 100);
 }
 
   function skipPrompt() {
