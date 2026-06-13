@@ -92,6 +92,18 @@ export const prompts: Prompt[] = [
   },
 
   {
+    id: "funny-077",
+    category: "funny",
+    title: "Refuses To Stop Edition",
+    mainPrompt: "What's something insane you do that makes sense only to you — and you refuse to stop?",
+    reveals: [
+      { label: "Follow-up", text: "Who tried to fix you… and failed?" },
+    ],
+    entryIntensity: 2, finalIntensity: 3, risk: "medium", type: "confession", openingStyle: "self",
+    tags: ["insane", "habits", "chaos", "unhinged"],
+  },
+
+  {
     id: "funny-016",
     category: "funny",
     title: "Texting Hell Edition",
@@ -430,6 +442,18 @@ export const prompts: Prompt[] = [
   },
 
   {
+    id: "funny-088",
+    category: "funny",
+    title: "Just To See Edition",
+    mainPrompt: "What's something you did just to see if you could get away with it?",
+    reveals: [
+      { label: "Follow-up", text: "Did it end in chaos — or did you win?" },
+    ],
+    entryIntensity: 3, finalIntensity: 4, risk: "medium", type: "confession", openingStyle: "self",
+    tags: ["chaos", "power", "impulse"],
+  },
+
+  {
     id: "funny-056",
     category: "funny",
     title: "The Pretender Files",
@@ -649,6 +673,17 @@ export const prompts: Prompt[] = [
     tags: ["animals", "hypothetical", "chaos", "feral"],
   },
 
+  {
+    id: "funny-068",
+    category: "funny",
+    title: "Money Chaos Edition",
+    mainPrompt: "You just got handed $1,000,000 — no strings. What's the first thing you're spending it on?",
+    reveals: [
+      { label: "Follow-up", text: "Be honest — is it responsible, chaotic, or both?" },
+    ],
+    entryIntensity: 1, finalIntensity: 2, risk: "low", type: "choice", openingStyle: "hypothetical",
+    tags: ["money", "hypothetical", "chaos", "fun"],
+  },
   // ─── DEBATE ───────────────────────────────────────────────────────────────────
 
   {
@@ -1161,7 +1196,18 @@ export const prompts: Prompt[] = [
     entryIntensity: 2, finalIntensity: 3, risk: "medium", type: "debate", openingStyle: "opinion",
     tags: ["education", "boundaries", "social"],
   },
-
+{
+    id: "debate-044",
+    category: "debate",
+    title: "Stereotype Truth Edition",
+    mainPrompt: "Do stereotypes exist because there's some truth to them — or do they just create the behavior they describe?",
+    reveals: [
+      { label: "Follow-up", text: "Name a stereotype about your own group?" },
+      { label: "Dig", text: "Is it ever okay to act on one… or never?" },
+    ],
+    entryIntensity: 3, finalIntensity: 4, risk: "high", type: "debate", openingStyle: "opinion",
+    tags: ["stereotypes", "race", "culture", "bias"],
+  },
   // ─── UNHINGED ─────────────────────────────────────────────────────────────────
 
   {
@@ -1256,7 +1302,7 @@ export const prompts: Prompt[] = [
     title: "Fake Friend Edition",
     mainPrompt: "Who's someone you smile at like a friend… but secretly can't stand?",
     reveals: [
-      { label: "Follow-up", text: "What did they do — or is it just their whole existence?" },
+      { label: "Follow-up", text: "Have you done something to make their life harder?" },
       { label: "Roast Bait", text: "Do they still think you're besties?" },
     ],
     entryIntensity: 3, finalIntensity: 4, risk: "high", type: "confession", openingStyle: "self",
@@ -1371,17 +1417,7 @@ export const prompts: Prompt[] = [
     tags: ["manipulation", "power", "confession"],
   },
 
-  {
-    id: "unhinged-018",
-    category: "unhinged",
-    title: "Just To See Edition",
-    mainPrompt: "What's something you did just to see if you could get away with it?",
-    reveals: [
-      { label: "Follow-up", text: "Did it end in chaos — or did you win?" },
-    ],
-    entryIntensity: 3, finalIntensity: 4, risk: "medium", type: "confession", openingStyle: "self",
-    tags: ["chaos", "power", "impulse"],
-  },
+  
 
   {
     id: "unhinged-019",
@@ -1443,29 +1479,6 @@ export const prompts: Prompt[] = [
     tags: ["therapy", "chaos", "unhinged", "confession"],
   },
 
-  {
-    id: "unhinged-024",
-    category: "unhinged",
-    title: "Refuses To Stop Edition",
-    mainPrompt: "What's something insane you do that makes sense only to you — and you refuse to stop?",
-    reveals: [
-      { label: "Follow-up", text: "Who tried to fix you… and failed?" },
-    ],
-    entryIntensity: 2, finalIntensity: 3, risk: "medium", type: "confession", openingStyle: "self",
-    tags: ["insane", "habits", "chaos", "unhinged"],
-  },
-
-  {
-    id: "unhinged-025",
-    category: "unhinged",
-    title: "Desperation Win Edition",
-    mainPrompt: "What's a bold thing you did out of pure desperation that actually… worked?",
-    reveals: [
-      { label: "Roast Bait", text: "Brilliance or madness? The room decides." },
-    ],
-    entryIntensity: 2, finalIntensity: 3, risk: "medium", type: "story", openingStyle: "self",
-    tags: ["desperation", "chaos", "win"],
-  },
 
   {
     id: "unhinged-026",
@@ -1473,7 +1486,7 @@ export const prompts: Prompt[] = [
     title: "Racist Upbringing Edition",
     mainPrompt: "What's something lowkey racist you heard growing up that you didn't question… until later?",
     reveals: [
-      { label: "Follow-up", text: "How long did you carry it with you?" },
+      { label: "Follow-up", text: "What's the most racist thing you believed or heard?" },
     ],
     entryIntensity: 4, finalIntensity: 5, risk: "high", type: "confession", openingStyle: "self",
     tags: ["racism", "upbringing", "reflection"],
@@ -1657,17 +1670,7 @@ export const prompts: Prompt[] = [
     tags: ["sex", "DMs", "chaos", "unhinged"],
   },
 
-  {
-    id: "unhinged-042",
-    category: "unhinged",
-    title: "Fold for Attention Edition",
-    mainPrompt: "Who here would absolutely fold if the right person gave them attention tonight?",
-    reveals: [
-      { label: "Point Finger", text: "Say their name — they already know." },
-    ],
-    entryIntensity: 3, finalIntensity: 4, risk: "high", type: "opinion", openingStyle: "group-callout",
-    tags: ["attention", "group", "callout", "chaos"],
-  },
+  
 
   {
     id: "unhinged-043",
@@ -1790,18 +1793,6 @@ export const prompts: Prompt[] = [
   },
 
   {
-    id: "unhinged-053",
-    category: "unhinged",
-    title: "Pretending Not to Care Edition",
-    mainPrompt: "Who here is way too good at pretending they don't care?",
-    reveals: [
-      { label: "Follow-up", text: "What's the giveaway?" },
-    ],
-    entryIntensity: 2, finalIntensity: 3, risk: "medium", type: "opinion", openingStyle: "group-callout",
-    tags: ["pretending", "emotions", "group", "callout"],
-  },
-
-  {
     id: "unhinged-054",
     category: "unhinged",
     title: "Lying About Sex Life Edition",
@@ -1837,16 +1828,19 @@ export const prompts: Prompt[] = [
     tags: ["quiet", "suspicious", "group", "callout"],
   },
 
+  
+
   {
-    id: "unhinged-057",
+    id: "Unhinged-058",
     category: "unhinged",
-    title: "Money Chaos Edition",
-    mainPrompt: "You just got handed $1,000,000 — no strings. What's the first thing you're spending it on?",
+    title: "Trying Too Hard Edition",
+    mainPrompt: "Who's clearly trying the hardest to be liked tonight?",
     reveals: [
-      { label: "Follow-up", text: "Be honest — is it responsible, chaotic, or both?" },
+      { label: "Follow-up", text: "Is it working — or is it just getting awkward?" },
+      { label: "Roast Bait", text: "Who here gives off audition energy every time they speak?" },
     ],
-    entryIntensity: 1, finalIntensity: 2, risk: "low", type: "choice", openingStyle: "hypothetical",
-    tags: ["money", "hypothetical", "chaos", "fun"],
+    entryIntensity: 4, finalIntensity: 4, risk: "medium", type: "opinion", openingStyle: "group-callout",
+    tags: ["group", "social", "callout", "awkward"],
   },
 
   // ─── SPICY ────────────────────────────────────────────────────────────────────
@@ -2621,4 +2615,27 @@ export const prompts: Prompt[] = [
     entryIntensity: 3, finalIntensity: 4, risk: "medium", type: "confession", openingStyle: "self",
     tags: ["power", "games", "confession", "manipulation"],
   },
+{
+    id: "spicy-063",
+    category: "spicy",
+    title: "Fold for Attention Edition",
+    mainPrompt: "Who here would absolutely fold if the right person gave them attention tonight?",
+    reveals: [
+      { label: "Point Finger", text: "Say their name — they already know." },
+    ],
+    entryIntensity: 3, finalIntensity: 4, risk: "high", type: "opinion", openingStyle: "group-callout",
+    tags: ["attention", "group", "callout", "chaos"],
+  },
+{
+    id: "spicy-064",
+    category: "spicy",
+    title: "Pretending Not to Care Edition",
+    mainPrompt: "Who here is way too good at pretending they don't care?",
+    reveals: [
+      { label: "Follow-up", text: "What's the giveaway?" },
+    ],
+    entryIntensity: 2, finalIntensity: 3, risk: "medium", type: "opinion", openingStyle: "group-callout",
+    tags: ["pretending", "emotions", "group", "callout"],
+  },
+
 ];

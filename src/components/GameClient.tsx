@@ -142,14 +142,10 @@ export default function GameClient({ category, prompts }: GameClientProps) {
   }}>
     SPILL<br /><Link href="/">THE</Link><br />HEAT
   </p>
-  {currentPromptIndex === 0 && visibleRevealCount === 0 && (
-    <p className="text-lg text-white/40 italic font-bold text-right leading-tight pb-1">
-      Ask the group...
-    </p>
-  )}
+  
 </div>
 
-        <PromptCard text={currentPrompt.mainPrompt} />
+        <PromptCard text={currentPrompt.mainPrompt} isFirst={currentPromptIndex === 0} />
 
         <div className="flex flex-col gap-3">
           {currentPrompt.reveals.map((reveal, index) => (

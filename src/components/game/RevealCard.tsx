@@ -1,3 +1,5 @@
+"use client";
+
 type RevealCardProps = {
   label: string;
   text: string;
@@ -14,7 +16,8 @@ export default function RevealCard({
   onReveal,
 }: RevealCardProps) {
   const dimmedClass = `rounded-xl px-5 py-8 text-center font-semibold text-2xl bg-[#1e1e1e] border border-[#FF5A1F] text-[#FF5A1F]`;
-const orangeClass = `rounded-xl px-5 py-8 text-center font-semibold text-2xl bg-[#FF5A1F] text-white`;
+  const orangeClass = `rounded-xl px-5 py-8 text-center font-semibold text-2xl bg-[#FF5A1F] text-white`;
+
   if (isRevealed) {
     return <div className={orangeClass}>{text}</div>;
   }
@@ -24,16 +27,16 @@ const orangeClass = `rounded-xl px-5 py-8 text-center font-semibold text-2xl bg-
       <button
         type="button"
         onClick={onReveal}
-        className={`${dimmedClass} transition active:scale-95 cursor-pointer`}
+        className={`${dimmedClass} transition active:scale-95 cursor-pointer w-full`}
       >
-        Tap to Reveal {label}
+        {label} <span className="text-3xl font-black">›</span>
       </button>
     );
   }
 
   return (
     <div className={`${dimmedClass} opacity-30 pointer-events-none`}>
-      Tap to Reveal {label}
+      {label} <span className="text-3xl font-black">›</span>
     </div>
   );
 }
