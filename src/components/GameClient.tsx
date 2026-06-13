@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type { Prompt } from "@/data/prompts";
 import { createPromptQueue } from "@/lib/promptEngine";
@@ -39,7 +40,7 @@ export default function GameClient({ category, prompts }: GameClientProps) {
       setTimeout(() => {
         const el = nextButtonRef.current || revealsRef.current;
         el?.scrollIntoView({ behavior: "smooth", block: "end" });
-      }, 150);
+      }, 0);
     }
   }, [visibleRevealCount]);
 
@@ -112,36 +113,41 @@ export default function GameClient({ category, prompts }: GameClientProps) {
 
       <div className="flex items-center justify-between px-5 py-6">
         <button
-          onClick={() => router.push("/category")}
-          className="text-white/50 hover:text-white text-xl"
-        >
-          ←
-        </button>
+  onClick={() => router.push("/category")}
+  className="text-white/50 hover:text-white text-4xl font-black"
+>
+  ‹
+</button>
         <button
-          onClick={skipPrompt}
-          className="text-white/40 hover:text-white text-xs"
-        >
-          Skip This Topic
-        </button>
+  onClick={skipPrompt}
+  className="text-white/40 hover:text-white text-xs font-black"
+>
+  Skip This Topic
+</button>
       </div>
 
       <div className="flex flex-col flex-1 px-5 pb-6 max-w-3xl mx-auto w-full">
 
-        <div className="mb-5">
-          <p style={{
-            fontFamily: "var(--font-archivo-black), sans-serif",
-            fontWeight: 900,
-            fontSize: "clamp(48px, 12vw, 80px)",
-            lineHeight: 0.92,
-            letterSpacing: "2px",
-            background: "linear-gradient(220deg, #FFB300 0%, #FF8F50 30%, #FF5A1F 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-          }}>
-            SPILL<br />THE<br />HEAT
-          </p>
-        </div>
+        <div className="mb-5 flex items-end justify-between">
+  <p style={{
+    fontFamily: "var(--font-archivo-black), sans-serif",
+    fontWeight: 900,
+    fontSize: "clamp(48px, 12vw, 80px)",
+    lineHeight: 0.92,
+    letterSpacing: "2px",
+    background: "linear-gradient(220deg, #FFB300 0%, #FF8F50 30%, #FF5A1F 100%)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    backgroundClip: "text",
+  }}>
+    SPILL<br /><Link href="/">THE</Link><br />HEAT
+  </p>
+  {currentPromptIndex === 0 && visibleRevealCount === 0 && (
+    <p className="text-lg text-white/40 italic font-bold text-right leading-tight pb-1">
+      Ask the group...
+    </p>
+  )}
+</div>
 
         <PromptCard text={currentPrompt.mainPrompt} />
 
