@@ -15,7 +15,7 @@ export default function RevealCard({
   isNext,
   onReveal,
 }: RevealCardProps) {
-  const dimmedClass = `rounded-xl px-5 py-8 text-center font-semibold text-2xl bg-[#1e1e1e] border border-[#FF5A1F] text-[#FF5A1F]`;
+  const dimmedClass = `rounded-xl px-5 py-5 text-center font-semibold text-2xl bg-[#1e1e1e] border border-[#FF5A1F] text-[#FF5A1F]`;
   const orangeClass = `rounded-xl px-5 py-8 text-center font-semibold text-2xl bg-[#FF5A1F] text-white`;
 
   if (isRevealed) {

@@ -693,7 +693,7 @@ export const prompts: Prompt[] = [
     mainPrompt: "Who should pay on the first date?",
     reveals: [
       { label: "Follow-up", text: "Does your answer change depending on who asked who out?" },
-      { label: "Dig", text: "Is your answer about fairness, tradition, attraction… or ego?" },
+      { label: "Dig Deeper", text: "Is your answer about fairness, tradition, attraction… or ego?" },
     ],
     entryIntensity: 2, finalIntensity: 3, risk: "medium", type: "debate", openingStyle: "opinion",
     tags: ["dating", "money", "values"],
@@ -718,7 +718,7 @@ export const prompts: Prompt[] = [
     mainPrompt: "Is love a choice — or a feeling?",
     reveals: [
       { label: "Follow-up", text: "If love is a choice, does falling out of love make it a choice too?" },
-      { label: "Dig", text: "If love fades, are you supposed to chase it… or let it go?" },
+      { label: "Dig Deeper", text: "If love fades, are you supposed to chase it… or let it go?" },
     ],
     entryIntensity: 2, finalIntensity: 4, risk: "medium", type: "debate", openingStyle: "opinion",
     tags: ["love", "relationships", "philosophy"],
@@ -731,7 +731,7 @@ export const prompts: Prompt[] = [
     mainPrompt: "If they insisted on splitting the bill on a first date — green flag or dealbreaker?",
     reveals: [
       { label: "Follow-up", text: "What if they only offered after seeing the total?" },
-      { label: "Dig", text: "If you paid for everything… would you expect something back?" },
+      { label: "Dig Deeper", text: "If you paid for everything… would you expect something back?" },
     ],
     entryIntensity: 2, finalIntensity: 3, risk: "medium", type: "debate", openingStyle: "opinion",
     tags: ["dating", "money", "values"],
@@ -744,7 +744,7 @@ export const prompts: Prompt[] = [
     mainPrompt: "Why do people still care about body count — and is it even fair?",
     reveals: [
       { label: "Follow-up", text: "Does gender change your answer?" },
-      { label: "Dig", text: "Would you actually judge someone for theirs?" },
+      { label: "Dig Deeper", text: "Would you actually judge someone for theirs?" },
     ],
     entryIntensity: 3, finalIntensity: 5, risk: "high", type: "debate", openingStyle: "opinion",
     tags: ["dating", "sexuality", "double standard"],
@@ -817,7 +817,7 @@ export const prompts: Prompt[] = [
     mainPrompt: "Are people today too sensitive — or just finally setting boundaries?",
     reveals: [
       { label: "Follow-up", text: "What's something you used to laugh at… that you'd avoid now?" },
-      { label: "Dig", text: "Have we become more respectful — or just scared of getting cancelled?" },
+      { label: "Dig Deeper", text: "Have we become more respectful — or just scared of getting cancelled?" },
     ],
     entryIntensity: 3, finalIntensity: 4, risk: "medium", type: "debate", openingStyle: "opinion",
     tags: ["culture", "sensitivity", "cancel culture"],
@@ -842,7 +842,7 @@ export const prompts: Prompt[] = [
     mainPrompt: "Do rules protect freedom — or restrict it?",
     reveals: [
       { label: "Follow-up", text: "Where's the line between structure and control?" },
-      { label: "Dig", text: "Would you feel safer with more rules — or fewer?" },
+      { label: "Dig Deeper", text: "Would you feel safer with more rules — or fewer?" },
     ],
     entryIntensity: 2, finalIntensity: 3, risk: "medium", type: "debate", openingStyle: "opinion",
     tags: ["freedom", "control", "society"],
@@ -891,7 +891,7 @@ export const prompts: Prompt[] = [
     mainPrompt: "Is lying always wrong — or are some lies harmless?",
     reveals: [
       { label: "Follow-up", text: "Is honesty more about timing… or truth?" },
-      { label: "Dig", text: "What's one lie you think actually helped someone?" },
+      { label: "Dig Deeper", text: "What's one lie you think actually helped someone?" },
     ],
     entryIntensity: 2, finalIntensity: 3, risk: "medium", type: "debate", openingStyle: "opinion",
     tags: ["lying", "honesty", "ethics"],
@@ -1203,7 +1203,7 @@ export const prompts: Prompt[] = [
     mainPrompt: "Do stereotypes exist because there's some truth to them — or do they just create the behavior they describe?",
     reveals: [
       { label: "Follow-up", text: "Name a stereotype about your own group?" },
-      { label: "Dig", text: "Is it ever okay to act on one… or never?" },
+      { label: "Dig Deeper", text: "Is it ever okay to act on one… or never?" },
     ],
     entryIntensity: 3, finalIntensity: 4, risk: "high", type: "debate", openingStyle: "opinion",
     tags: ["stereotypes", "race", "culture", "bias"],
@@ -2258,7 +2258,7 @@ export const prompts: Prompt[] = [
     mainPrompt: "Could you stay with someone who treats you amazing… but the sex is bad?",
     reveals: [
       { label: "Follow-up", text: "Do you tell them — or just play along forever?" },
-      { label: "Dig", text: "One catch: it never gets better." },
+      { label: "Dig Depper", text: "One catch: it never gets better." },
     ],
     entryIntensity: 3, finalIntensity: 4, risk: "medium", type: "debate", openingStyle: "opinion",
     tags: ["sex", "relationships", "debate"],
@@ -2295,7 +2295,7 @@ export const prompts: Prompt[] = [
     mainPrompt: "Would you rather someone be obsessed with you — or play it a little cold?",
     reveals: [
       { label: "Follow-up", text: "Where's the line between 'hot' and 'emotional damage'?" },
-      { label: "Dig", text: "Which one actually gets you more hooked? Be honest." },
+      { label: "Dig Deeper", text: "Which one actually gets you more hooked? Be honest." },
     ],
     entryIntensity: 3, finalIntensity: 4, risk: "medium", type: "debate", openingStyle: "opinion",
     tags: ["attraction", "obsession", "relationships"],
@@ -2538,7 +2538,7 @@ export const prompts: Prompt[] = [
     mainPrompt: "Do you expect things from your partner that you don't offer back?",
     reveals: [
       { label: "Follow-up", text: "Name one. Right now." },
-      { label: "Dig", text: "What would they say if we asked them?" },
+      { label: "Dig Deeper", text: "What would they say if we asked them?" },
     ],
     entryIntensity: 3, finalIntensity: 4, risk: "medium", type: "confession", openingStyle: "self",
     tags: ["relationships", "double standard", "confession"],
