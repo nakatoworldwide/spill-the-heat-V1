@@ -145,7 +145,7 @@ export default function GameClient({ category, prompts }: GameClientProps) {
   
 </div>
 
-        <PromptCard text={currentPrompt.mainPrompt} isFirst={currentPromptIndex === 0} />
+        <PromptCard text={currentPrompt.mainPrompt} isFirst={currentPromptIndex === 3} />
 
         <div className="flex flex-col gap-3">
           {currentPrompt.reveals.map((reveal, index) => (
