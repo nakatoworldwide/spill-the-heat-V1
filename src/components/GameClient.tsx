@@ -64,7 +64,6 @@ export default function GameClient({ category, prompts }: GameClientProps) {
 
   function goToNextPrompt() {
   setVisibleRevealCount(0);
-  window.scrollTo({ top: 0, behavior: "smooth" });
   setCurrentPromptIndex((current) => {
     const nextIndex = current + 1;
     if (nextIndex >= promptQueue.length) {
@@ -80,6 +79,9 @@ export default function GameClient({ category, prompts }: GameClientProps) {
     }
     return nextIndex;
   });
+  setTimeout(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, 50);
 }
 
   function skipPrompt() {
