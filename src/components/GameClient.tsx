@@ -34,12 +34,17 @@ export default function GameClient({ category, prompts }: GameClientProps) {
   }, [category]);
 
   useEffect(() => {
-    if (visibleRevealCount > 0) {
-      setTimeout(() => {
-        revealsRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
-      }, 150);
-    }
-  }, [visibleRevealCount]);
+  if (visibleRevealCount > 0) {
+    setTimeout(() => {
+      if (revealsRef.current) {
+        const el = revealsRef.current;
+        const rect = el.getBoundingClientRect();
+        const scrollTop = window.scrollY + rect.bottom - window.innerHeight + 40;
+        window.scrollTo({ top: scrollTop, behavior: "smooth" });
+      }
+    }, 150);
+  }
+}, [visibleRevealCount]);
 
   const currentPrompt = promptQueue[currentPromptIndex];
 
@@ -58,26 +63,24 @@ export default function GameClient({ category, prompts }: GameClientProps) {
   }
 
   function goToNextPrompt() {
-    setVisibleRevealCount(0);
-    setTimeout(() => {
-      topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 50);
-    setCurrentPromptIndex((current) => {
-      const nextIndex = current + 1;
-      if (nextIndex >= promptQueue.length) {
-        const newSeenIds = new Set([...seenIds, ...promptQueue.map((p) => p.id)]);
-        setSeenIds(newSeenIds);
-        const newQueue = createPromptQueue(prompts, {
-          category,
-          useIntensityProgression: true,
-          excludeIds: newSeenIds,
-        });
-        setPromptQueue(newQueue);
-        return 0;
-      }
-      return nextIndex;
-    });
-  }
+  setVisibleRevealCount(0);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  setCurrentPromptIndex((current) => {
+    const nextIndex = current + 1;
+    if (nextIndex >= promptQueue.length) {
+      const newSeenIds = new Set([...seenIds, ...promptQueue.map((p) => p.id)]);
+      setSeenIds(newSeenIds);
+      const newQueue = createPromptQueue(prompts, {
+        category,
+        useIntensityProgression: true,
+        excludeIds: newSeenIds,
+      });
+      setPromptQueue(newQueue);
+      return 0;
+    }
+    return nextIndex;
+  });
+}
 
   function skipPrompt() {
     const currentIntensity = currentPrompt.entryIntensity;
