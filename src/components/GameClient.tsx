@@ -171,6 +171,17 @@ export default function GameClient({ category, prompts }: GameClientProps) {
         </div>
 
       </div>
-    </main>
+    </main>    
   );
+  <div
+  onClick={() => {
+    const w = window.scrollY;
+    const b = document.body.scrollTop;
+    const h = document.documentElement.scrollTop;
+    alert(`window: ${w}\nbody: ${b}\nhtml: ${h}`);
+  }}
+  className="fixed top-2 right-2 z-50 bg-red-600 text-white text-xs px-3 py-2 rounded"
+>
+  TAP ME
+</div>
 }
