@@ -19,8 +19,9 @@ export default function GameClient({ category, prompts }: GameClientProps) {
   const [currentPromptIndex, setCurrentPromptIndex] = useState(0);
   const [visibleRevealCount, setVisibleRevealCount] = useState(0);
   const [seenIds, setSeenIds] = useState<Set<string>>(new Set());
-  const revealsRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const nextButtonRef = useRef<HTMLDivElement>(null);
+  const revealsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const queue = createPromptQueue(prompts, {
@@ -37,11 +38,7 @@ export default function GameClient({ category, prompts }: GameClientProps) {
     if (visibleRevealCount > 0) {
       setTimeout(() => {
         const el = nextButtonRef.current || revealsRef.current;
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          const scrollTop = window.scrollY + rect.bottom - window.innerHeight + 40;
-          window.scrollTo({ top: scrollTop, behavior: "smooth" });
-        }
+        el?.scrollIntoView({ behavior: "smooth", block: "end" });
       }, 150);
     }
   }, [visibleRevealCount]);
@@ -50,7 +47,7 @@ export default function GameClient({ category, prompts }: GameClientProps) {
 
   if (!currentPrompt) {
     return (
-      <main className="min-h-screen bg-[#111] text-white">
+      <main className="h-dvh bg-[#111] text-white overflow-y-auto">
         <div className="flex flex-col flex-1 px-5 py-6 max-w-3xl mx-auto w-full">
           <p className="text-white/40">Loading...</p>
         </div>
@@ -63,7 +60,6 @@ export default function GameClient({ category, prompts }: GameClientProps) {
   }
 
   function goToNextPrompt() {
-    window.scrollTo({ top: 0, behavior: "instant" });
     setVisibleRevealCount(0);
     setCurrentPromptIndex((current) => {
       const nextIndex = current + 1;
@@ -80,6 +76,7 @@ export default function GameClient({ category, prompts }: GameClientProps) {
       }
       return nextIndex;
     });
+    if (scrollRef.current) scrollRef.current.scrollTop = 0;
   }
 
   function skipPrompt() {
@@ -102,7 +99,7 @@ export default function GameClient({ category, prompts }: GameClientProps) {
         return newQueue;
       });
       setVisibleRevealCount(0);
-      window.scrollTo({ top: 0, behavior: "instant" });
+      if (scrollRef.current) scrollRef.current.scrollTop = 0;
     } else {
       goToNextPrompt();
     }
@@ -111,7 +108,7 @@ export default function GameClient({ category, prompts }: GameClientProps) {
   const allRevealed = visibleRevealCount >= currentPrompt.reveals.length;
 
   return (
-    <main className="min-h-screen bg-[#111] text-white flex flex-col">
+    <main ref={scrollRef} className="h-dvh bg-[#111] text-white overflow-y-auto flex flex-col">
 
       <div className="flex items-center justify-between px-5 py-6">
         <button
@@ -171,17 +168,6 @@ export default function GameClient({ category, prompts }: GameClientProps) {
         </div>
 
       </div>
-    </main>    
+    </main>
   );
-  <div
-  onClick={() => {
-    const w = window.scrollY;
-    const b = document.body.scrollTop;
-    const h = document.documentElement.scrollTop;
-    alert(`window: ${w}\nbody: ${b}\nhtml: ${h}`);
-  }}
-  className="fixed top-2 right-2 z-50 bg-red-600 text-white text-xs px-3 py-2 rounded"
->
-  TAP ME
-</div>
 }
