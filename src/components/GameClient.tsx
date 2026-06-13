@@ -47,7 +47,7 @@ export default function GameClient({ category, prompts }: GameClientProps) {
 
   if (!currentPrompt) {
     return (
-      <main className="h-dvh bg-[#111] text-white overflow-y-auto">
+      <main className="h-dvh bg-black text-white overflow-y-auto">
         <div className="flex flex-col flex-1 px-5 py-6 max-w-3xl mx-auto w-full">
           <p className="text-white/40">Loading...</p>
         </div>
@@ -108,7 +108,7 @@ export default function GameClient({ category, prompts }: GameClientProps) {
   const allRevealed = visibleRevealCount >= currentPrompt.reveals.length;
 
   return (
-    <main ref={scrollRef} className="h-dvh bg-[#111] text-white overflow-y-auto flex flex-col">
+    <main ref={scrollRef} className="h-dvh bg-black text-white overflow-y-auto flex flex-col">
 
       <div className="flex items-center justify-between px-5 py-6">
         <button

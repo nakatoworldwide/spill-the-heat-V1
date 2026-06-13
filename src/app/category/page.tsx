@@ -9,7 +9,7 @@ const categories = [
 
 export default function CategoryPage() {
   return (
-    <main className="min-h-screen bg-[#111] flex flex-col">
+    <main className="min-h-screen bg-black flex flex-col">
       <div className="flex flex-col flex-1 px-6 py-12 max-w-3xl mx-auto w-full">
 
         <div className="mb-8">
