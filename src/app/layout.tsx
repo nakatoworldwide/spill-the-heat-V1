@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Archivo_Black } from "next/font/google";
 import "./globals.css";
 
@@ -21,6 +21,10 @@ const archivoBlack = Archivo_Black({
 export const metadata: Metadata = {
   title: "Spill The Heat",
   description: "The game that exposes everyone",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#111111",
 };
 
 export default function RootLayout({
