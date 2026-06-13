@@ -20,7 +20,7 @@ export default function GameClient({ category, prompts }: GameClientProps) {
   const [visibleRevealCount, setVisibleRevealCount] = useState(0);
   const [seenIds, setSeenIds] = useState<Set<string>>(new Set());
   const revealsRef = useRef<HTMLDivElement>(null);
-  const topRef = useRef<HTMLDivElement>(null);
+  const nextButtonRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const queue = createPromptQueue(prompts, {
@@ -34,17 +34,17 @@ export default function GameClient({ category, prompts }: GameClientProps) {
   }, [category]);
 
   useEffect(() => {
-  if (visibleRevealCount > 0) {
-    setTimeout(() => {
-      if (revealsRef.current) {
-        const el = revealsRef.current;
-        const rect = el.getBoundingClientRect();
-        const scrollTop = window.scrollY + rect.bottom - window.innerHeight + 40;
-        window.scrollTo({ top: scrollTop, behavior: "smooth" });
-      }
-    }, 150);
-  }
-}, [visibleRevealCount]);
+    if (visibleRevealCount > 0) {
+      setTimeout(() => {
+        const el = nextButtonRef.current || revealsRef.current;
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          const scrollTop = window.scrollY + rect.bottom - window.innerHeight + 40;
+          window.scrollTo({ top: scrollTop, behavior: "smooth" });
+        }
+      }, 150);
+    }
+  }, [visibleRevealCount]);
 
   const currentPrompt = promptQueue[currentPromptIndex];
 
@@ -63,28 +63,24 @@ export default function GameClient({ category, prompts }: GameClientProps) {
   }
 
   function goToNextPrompt() {
-  setVisibleRevealCount(0);
-  setCurrentPromptIndex((current) => {
-    const nextIndex = current + 1;
-    if (nextIndex >= promptQueue.length) {
-      const newSeenIds = new Set([...seenIds, ...promptQueue.map((p) => p.id)]);
-      setSeenIds(newSeenIds);
-      const newQueue = createPromptQueue(prompts, {
-        category,
-        useIntensityProgression: true,
-        excludeIds: newSeenIds,
-      });
-      setPromptQueue(newQueue);
-      return 0;
-    }
-    return nextIndex;
-  });
-  setTimeout(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
-    document.body.scrollTo({ top: 0, behavior: "smooth" });
-  }, 100);
-}
+    window.scrollTo({ top: 0, behavior: "instant" });
+    setVisibleRevealCount(0);
+    setCurrentPromptIndex((current) => {
+      const nextIndex = current + 1;
+      if (nextIndex >= promptQueue.length) {
+        const newSeenIds = new Set([...seenIds, ...promptQueue.map((p) => p.id)]);
+        setSeenIds(newSeenIds);
+        const newQueue = createPromptQueue(prompts, {
+          category,
+          useIntensityProgression: true,
+          excludeIds: newSeenIds,
+        });
+        setPromptQueue(newQueue);
+        return 0;
+      }
+      return nextIndex;
+    });
+  }
 
   function skipPrompt() {
     const currentIntensity = currentPrompt.entryIntensity;
@@ -106,6 +102,7 @@ export default function GameClient({ category, prompts }: GameClientProps) {
         return newQueue;
       });
       setVisibleRevealCount(0);
+      window.scrollTo({ top: 0, behavior: "instant" });
     } else {
       goToNextPrompt();
     }
@@ -115,7 +112,6 @@ export default function GameClient({ category, prompts }: GameClientProps) {
 
   return (
     <main className="min-h-screen bg-[#111] text-white flex flex-col">
-      <div ref={topRef} />
 
       <div className="flex items-center justify-between px-5 py-6">
         <button
@@ -166,10 +162,10 @@ export default function GameClient({ category, prompts }: GameClientProps) {
           ))}
 
           {allRevealed && (
-            <div ref={revealsRef}>
+            <div ref={nextButtonRef}>
               <ActionButton onClick={goToNextPrompt} variant="red">
-  Next Question →
-</ActionButton>
+                Next Question →
+              </ActionButton>
             </div>
           )}
         </div>
