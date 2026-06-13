@@ -3,9 +3,9 @@ import Link from "next/link";
 export default function HomePage() {
   return (
     <main className="flex min-h-screen flex-col bg-[#111]">
-      <div className="flex flex-1 flex-col px-6 py-12 max-w-6xl mx-auto w-full">
+      <div className="flex flex-1 flex-col px-6 pt-6 pb-12 max-w-6xl mx-auto w-full">
 
-        <div className="flex flex-col pt-4">
+        <div className="flex flex-col">
           <img src="/logo.svg" alt="Spill The Heat" className="w-160 md:w-140" />
           <p className="text-white/50 text-base mt-3 italic font-bold">The game that exposes everyone</p>
         </div>
